@@ -1,0 +1,12 @@
+.profile {
+    margin: 37px auto 47px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 1024px) {
+    .profile {
+        display: block;
+        text-align: center;
+    }
+}

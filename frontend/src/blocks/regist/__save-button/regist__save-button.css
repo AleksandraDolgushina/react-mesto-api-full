@@ -1,0 +1,18 @@
+.regist__save-button {
+    height: 50px;
+    border: none;
+    color:black;
+    margin-top: 216px;
+    padding: 0;
+    transition: opacity ease-in .2s;
+    background: #FFFFFF;
+    border-radius: 2px;
+    font-size: 18px;
+    line-height: 22px;
+    width: 100%;
+}
+
+.regist__save-button:hover {
+    cursor: pointer;
+    opacity: 0.85;
+  }

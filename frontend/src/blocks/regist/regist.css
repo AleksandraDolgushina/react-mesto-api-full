@@ -1,0 +1,7 @@
+.regist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 385px;
+    margin: 0 auto;
+}

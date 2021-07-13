@@ -1,0 +1,10 @@
+.regist__link {
+    color: white;
+    text-decoration: none;
+    transition: opacity ease-in .2s;
+}
+  
+.regist__link:hover {
+    opacity: .6; 
+    cursor: pointer;
+}

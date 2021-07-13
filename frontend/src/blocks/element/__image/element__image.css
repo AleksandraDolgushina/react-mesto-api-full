@@ -1,0 +1,15 @@
+.element__image {
+    width: 282px;
+    height: 282px;
+    min-height: 282px;
+    border-radius: 10px 10px 0 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.element__image:hover {
+    opacity: .9;
+    transform: scale(1.01);
+    cursor: pointer;
+}

@@ -1,0 +1,16 @@
+.regist__item {
+    border: none;
+    width: 358px;
+    padding-bottom: 13px;
+    box-sizing: border-box;
+    border-bottom: 2px solid rgb(204, 204, 204);
+    font-size: 14px;
+    line-height: 17px;
+    background-color: black;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.regist__item:focus {
+    outline: none;
+}
