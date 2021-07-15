@@ -39,7 +39,7 @@ app.post('/signup', celebrate({
     email: Joi.string().required().email(),
     password: Joi.string().required().min(5),
     name: Joi.string().min(2).max(30),
-    avatar: Joi.string(),
+    avatar: Joi.string().regex(/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/),
     about: Joi.string().min(2).max(30),
   }).unknown(true),
 }), createUser);
@@ -63,7 +63,11 @@ app.use(errors());
 app.use((err, req, res, next) => {
   const status = err.statusCode || 500;
   const { message } = err;
-  res.status(status).json({ err: message || 'На сервере произошла ошибка' });
+  res.status(status).send({
+    message: status === 500
+      ? 'На сервере произошла ошибка'
+      : message,
+  });
   return next();
 });
 

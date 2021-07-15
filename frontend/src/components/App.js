@@ -237,6 +237,6 @@ const App = () => {
             <InfoTooltip isOpen={isInfoPopupOpen} onClose={closeAllPopups} popupStatus={popupStatus} />
         </CurrentUserContext.Provider>
   );
-};
+}
 
 export default App;

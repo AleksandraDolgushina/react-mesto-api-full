@@ -1,19 +1,19 @@
 {
   "name": "express-mesto",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend app",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "lint": "npx eslint",
+    "lint": "npx eslint .",
     "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AleksandraDolgushina/express-mesto.git"
   },
-  "author": "",
+  "author": "Aleksandra Dolgushina",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/AleksandraDolgushina/express-mesto/issues"

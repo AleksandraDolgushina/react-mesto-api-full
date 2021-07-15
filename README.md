@@ -4,3 +4,5 @@
 Публичный IP-адрес: 84.252.136.32
 
 Домен: http://mesto.dolgushina.nomoredomains.rocks/
+
+Доменное имя API: http://api.mesto.dolgushina.nomoredomains.rocks/

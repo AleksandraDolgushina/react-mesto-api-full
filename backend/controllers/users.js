@@ -73,7 +73,6 @@ module.exports.patchUser = (req, res, next) => {
   User.findByIdAndUpdate(req.user._id, { name, about }, {
     new: true,
     runValidators: true,
-    upsert: true,
   })
     .then((user) => {
       if (user === null) {
@@ -95,7 +94,6 @@ module.exports.patchAvatar = (req, res, next) => {
   User.findByIdAndUpdate(req.user._id, { avatar }, {
     new: true,
     runValidators: true,
-    upsert: true,
   })
     .then((user) => {
       if (user === null) {
@@ -123,6 +121,7 @@ module.exports.login = (req, res, next) => {
         maxAge: 3600000 * 24 * 7,
       }).send({ token });
     })
-    .catch(new AuthentificationError('Неправильный адрес почты или пароль'))
-    .catch(next);
+    .catch(() => {
+      next(new AuthentificationError('Неправильный адрес почты или пароль'));
+    });
 };
