@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://mesto.dolgushina.nomoredomains.rocks';
+export const BASE_URL = 'https://api.mesto.dolgushina.nomoredomains.rocks';
 
 const checkResponse = (response) => response.ok ? response.json() : Promise.reject(`'Ошибка: ${response.status}'`)
 
@@ -22,7 +22,7 @@ export const authorize = (password, email) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({password, email})
-  }) 
+  })
   .then(checkResponse)
 };
 
@@ -34,6 +34,6 @@ export const getContent = (token) => {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
     }
-  }) 
+  })
   .then(res => checkResponse(res))
 }
