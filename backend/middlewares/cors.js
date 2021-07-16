@@ -1,6 +1,6 @@
 const allowedCors = [
-  'https: mesto.dolgushina.nomoredomains.rocks',
-  'http: mesto.dolgushina.nomoredomains.rocks',
+  'https://mesto.dolgushina.nomoredomains.rocks',
+  'https://api.mesto.dolgushina.nomoredomains.rocks',
 ];
 
 module.exports = ((req, res, next) => {
@@ -10,7 +10,7 @@ module.exports = ((req, res, next) => {
   const requestHeaders = req.headers['access-control-request-headers'];
 
   if (allowedCors.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Credentials', true);
   }
   if (method === 'OPTIONS') {
