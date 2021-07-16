@@ -78,8 +78,8 @@ const App = () => {
     const handleAddPlaceSubmit = (data) => {
         setIsLoading(true)
         api.addCard(data)
-            .then((newCard) => {
-                setCards([newCard, ...cards]);
+            .then((res) => {
+                setCards([res.card, ...cards]);
                 closeAllPopups()
             })
             .catch(error => console.log(error))
