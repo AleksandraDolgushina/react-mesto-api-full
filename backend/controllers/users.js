@@ -10,7 +10,7 @@ const { JWT_SECRET = 'dev-secret' } = process.env;
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
-    .then((user) => res.send(user))
+    .then((user) => res.send({ data: user }))
     .catch(next);
 };
 
@@ -20,7 +20,7 @@ module.exports.getUserId = (req, res, next) => {
       if (user === null) {
         throw new NotFoundError('Такого пользователя нет');
       } else {
-        res.send(user);
+        res.send({ data: user });
       }
     })
     .catch((err) => {
@@ -33,7 +33,7 @@ module.exports.getUserId = (req, res, next) => {
 
 module.exports.getUser = (req, res, next) => {
   User.findById(req.user._id)
-    .then((user) => res.send(user))
+    .then((user) => res.send({ data: user }))
     .catch((err) => {
       if (err.name === 'CastError') {
         throw new ValidationError('Переданы некорректные данные');
