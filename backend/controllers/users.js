@@ -80,7 +80,7 @@ module.exports.patchUser = (req, res, next) => {
       if (user === null) {
         throw new NotFoundError('Такого пользователя нет');
       } else {
-        res.send({ data: user });
+        res.send(user);
       }
     })
     .catch((err) => {
@@ -101,7 +101,7 @@ module.exports.patchAvatar = (req, res, next) => {
       if (user === null) {
         throw new NotFoundError('Такого пользователя нет');
       } else {
-        res.send({ data: { avatar } });
+        res.send({ avatar });
       }
     })
     .catch((err) => {

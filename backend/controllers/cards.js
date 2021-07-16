@@ -30,7 +30,7 @@ module.exports.deleteCard = (req, res, next) => {
       }
       if (card.owner.equals(req.user._id)) {
         Card.findByIdAndRemove(req.params.cardId)
-          .then((cards) => res.send({ cards }));
+          .then((cards) => res.send(cards));
       } else {
         throw new CopyrightError('Невозможно удалить чужую карточку');
       }
@@ -53,7 +53,7 @@ module.exports.likeCard = (req, res, next) => {
       if (!card) {
         throw new NotFoundError('Карточка с указанным _id не найдена');
       }
-      res.send({ card });
+      res.send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -75,7 +75,7 @@ module.exports.dislikeCard = (req, res, next) => {
       if (!card) {
         throw new NotFoundError('Карточка с указанным _id не найдена');
       }
-      res.send({ card });
+      res.send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
