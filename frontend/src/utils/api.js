@@ -6,7 +6,7 @@ class Api {
 
     _handleResponse(response) {
         if (response.ok) {
-            return response
+            return response.json()
         } return Promise.reject(`Ошибка ${response.status}`)
     };
 
