@@ -70,7 +70,7 @@ const App = () => {
             .then((res) => {
                 setCurrentUser(res)
                 closeAllPopups()
-            }) 
+            })
             .catch(error => console.log(error))
             .finally(() => setIsLoading(false))
     }
@@ -81,7 +81,7 @@ const App = () => {
             .then((newCard) => {
                 setCards([newCard, ...cards]);
                 closeAllPopups()
-            }) 
+            })
             .catch(error => console.log(error))
             .finally(() => setIsLoading(false))
     }
@@ -96,7 +96,7 @@ const App = () => {
     }
 
     const  handleCardLike = (card) => {
-        const isLiked = card.likes.some(i => i._id === currentUser._id);  
+        const isLiked = card.likes.some(i => i._id === currentUser._id);
         api.changeLikeCardStatus(card._id, isLiked)
             .then((newCard) => {
                 setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
@@ -114,7 +114,7 @@ const App = () => {
             .catch(error => console.log(error))
             .finally(() => setIsLoading(false))
     }
-      
+
     const handleRegister = ({password, email}) => {
         auth.register(password, email)
             .then(() => {
@@ -177,8 +177,7 @@ const App = () => {
                 setEmail(res.data.email)
                 setLoggedIn(true)
             })
-            .catch(error => {
-                console.error(error)})
+            .catch(error => console.log(error))
         }
     }
 
@@ -186,17 +185,17 @@ const App = () => {
         <CurrentUserContext.Provider value={currentUser}>
             <Header handleLogOut={handleLogOut} email={email}/>
             <Switch>
-                <ProtectedRoute 
+                <ProtectedRoute
                     exact path="/"
                     component={Main}
                     loggedIn={loggedIn}
-                    onEditAvatar={handleEditAvatarClick} 
-                    onEditProfile={handleEditProfileClick} 
-                    onAddPlace={handleAddPlaceClick} 
+                    onEditAvatar={handleEditAvatarClick}
+                    onEditProfile={handleEditProfileClick}
+                    onAddPlace={handleAddPlaceClick}
                     onCardClick={handleCardClick}
                     cards={cards}
                     onCardLike={handleCardLike}
-                    onCardDelete={handleDeleteClick} 
+                    onCardDelete={handleDeleteClick}
                 />
                 <Route path='/sign-in'>
                     <Login handleLogin={handleLogin} />
@@ -209,21 +208,21 @@ const App = () => {
                 </Route>
             </Switch>
             <Footer />
-            <EditProfilePopup 
-                isOpen={isEditProfilePopupOpen} 
-                onClose={closeAllPopups} 
+            <EditProfilePopup
+                isOpen={isEditProfilePopupOpen}
+                onClose={closeAllPopups}
                 onUpdateUser={handleUpdateUser}
                 isLoading={isLoading}
             />
-            <AddPlacePopup 
-                isOpen={isAddPlacePopupOpen} 
-                onClose={closeAllPopups} 
+            <AddPlacePopup
+                isOpen={isAddPlacePopupOpen}
+                onClose={closeAllPopups}
                 onUpdateCard={handleAddPlaceSubmit}
                 isLoading={isLoading}
             />
-            <EditAvatarPopup 
-                isOpen={isEditAvatarPopupOpen} 
-                onClose={closeAllPopups} 
+            <EditAvatarPopup
+                isOpen={isEditAvatarPopupOpen}
+                onClose={closeAllPopups}
                 onUpdateAvatar={handleUpdateAvatar}
                 isLoading={isLoading}
             />
