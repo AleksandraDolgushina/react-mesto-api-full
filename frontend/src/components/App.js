@@ -174,7 +174,7 @@ const App = () => {
         if (jwt) {
             auth.getContent(jwt)
             .then( res => {
-                setEmail(res.data.email)
+                setEmail(res.email)
                 setLoggedIn(true)
             })
             .catch(error => console.log(error))
