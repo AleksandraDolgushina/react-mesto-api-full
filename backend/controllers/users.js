@@ -52,13 +52,7 @@ module.exports.createUser = (req, res, next) => {
     .then((hash) => User.create({
       name, about, avatar, email, password: hash,
     }))
-    .then((user) => res.send({
-      _id: user._id,
-      name: user.name,
-      about: user.about,
-      avatar: user.avatar,
-      email: user.email,
-    }))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         throw new ValidationError('Переданы некорректные данные');
@@ -101,7 +95,7 @@ module.exports.patchAvatar = (req, res, next) => {
       if (user === null) {
         throw new NotFoundError('Такого пользователя нет');
       } else {
-        res.send({ avatar });
+        res.send(user);
       }
     })
     .catch((err) => {
