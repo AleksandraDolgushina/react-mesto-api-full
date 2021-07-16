@@ -86,7 +86,7 @@ class Api {
 }
 
 const api = new Api({
-    address: 'https://mesto.dolgushina.nomoredomains.rocks',
+    address: 'https://api.mesto.dolgushina.nomoredomains.rocks',
     headers: {
         'Content-Type': 'application/json'
         }
