@@ -6,6 +6,8 @@ const AuthentificationError = require('../errors/authentification-err');
 const ValidationError = require('../errors/validation-err');
 const DuplicateError = require('../errors/duplicate-err');
 
+const { JWT_SECRET = 'dev-secret' } = process.env;
+
 module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((user) => res.send({ data: user }))
@@ -114,7 +116,7 @@ module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
       res.cookie('jwt', token, {
         httpOnly: true,
         sameSite: true,
