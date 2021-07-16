@@ -9,7 +9,8 @@ function Card(props) {
     const cardDeleteButtonClassName = (
         `element__delete ${isOwn && 'element__delete_active'}`
     );
-
+console.log(props.card)
+console.log(props.owner._id)
     const isLiked = props.card.likes.some(i => i._id === currentUser._id);
     const cardLikeButtonClassName = (
         `element__like ${isLiked && 'element__like_active'}`
@@ -27,7 +28,7 @@ function Card(props) {
         props.onCardDelete(props.card)
     }
 
-    return( 
+    return(
         <div className="element">
             <div className="element__image" style={{ backgroundImage: `url(${props.card.link})`}} onClick={handleClick}/>
             <button className={cardDeleteButtonClassName} onClick={handleCardDelete}></button>
