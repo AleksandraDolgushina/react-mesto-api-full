@@ -6,10 +6,10 @@ class Api {
 
     _handleResponse(response) {
         if (response.ok) {
-            return response.json()
+            return response
         } return Promise.reject(`Ошибка ${response.status}`)
     };
-    
+
     getUser() {
         return fetch(`${this._address}/users/me`, {
             credentials: 'include',
@@ -17,7 +17,7 @@ class Api {
         })
         .then(this._handleResponse)
     ;}
-    
+
     getCard() {
         return fetch(`${this._address}/cards`, {
             credentials: 'include',
@@ -25,7 +25,7 @@ class Api {
         })
         .then(this._handleResponse)
     };
-        
+
     editUser(data) {
         return fetch(`${this._address}/users/me`, {
             method: 'PATCH',
@@ -57,7 +57,7 @@ class Api {
             method: 'DELETE',
             credentials: 'include',
             headers: this._headers,
-        }) 
+        })
         .then(response => response.ok
             ? Promise.resolve('success')
             : Promise.reject(`Ошибка ${response.status}`))
@@ -68,7 +68,7 @@ class Api {
             method: isLiked ? 'DELETE' : 'PUT',
             credentials: 'include',
             headers: this._headers,
-        }) 
+        })
         .then(this._handleResponse)
     };
 
@@ -80,7 +80,7 @@ class Api {
             body: JSON.stringify({
                 avatar: data.avatar
             })
-        }) 
+        })
         .then(this._handleResponse)
     };
 }
@@ -93,4 +93,3 @@ const api = new Api({
 });
 
 export default api;
-  
