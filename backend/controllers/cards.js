@@ -5,7 +5,7 @@ const CopyrightError = require('../errors/copyright-err');
 
 module.exports.getCard = (req, res, next) => {
   Card.find({})
-    .then((cards) => res.send({ cards }))
+    .then((cards) => res.send(cards))
     .catch(next);
 };
 
