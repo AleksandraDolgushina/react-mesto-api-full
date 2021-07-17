@@ -24,11 +24,9 @@ function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick, cards, onCa
                 <button className="profile__add-button" onClick={onAddPlace}></button>
             </section>
             <section className="elements">
-                {cards.map((item) =>  {
-                  console.log(item)
-                }
-                    //<Card key={item._id} card={item} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete}/>
-                )}
+                {cards.map((item) => (
+                    <Card key={item._id} card={item} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete}/>
+                ))}
             </section>
         </main>
     )
