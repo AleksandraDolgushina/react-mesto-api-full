@@ -79,7 +79,7 @@ const App = () => {
         setIsLoading(true)
         api.addCard(data)
             .then((res) => {
-                setCards([res.card, ...cards]);
+                setCards([res, ...cards]);
                 closeAllPopups()
             })
             .catch(error => console.log(error))
