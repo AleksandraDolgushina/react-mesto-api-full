@@ -1,5 +1,7 @@
 const { celebrate, Joi } = require('celebrate');
+const validator = require('validator');
 const router = require('express').Router();
+const ValidationError = require('../errors/validation-err');
 const {
   getCard,
   deleteCard,
@@ -7,6 +9,14 @@ const {
   likeCard,
   dislikeCard,
 } = require('../controllers/cards');
+
+const methodValidation = (value) => {
+  const method = validator.isURL(value, { require_protocol: true });
+  if (!method) {
+    return new ValidationError('Введены некорректные данные');
+  }
+  return value;
+};
 
 router.get('/cards', getCard);
 router.delete('/cards/:cardId', celebrate({
@@ -16,7 +26,7 @@ router.delete('/cards/:cardId', celebrate({
 }), deleteCard);
 router.post('/cards', celebrate({
   body: Joi.object().keys({
-    link: Joi.string().required().regex(/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/),
+    link: Joi.string().required().custom(methodValidation, 'Validation Link'),
     name: Joi.string().min(2).max(30).required(),
   }),
 }), createCard);

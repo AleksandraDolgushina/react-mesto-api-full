@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
+const validator = require('validator');
 const cookieParser = require('cookie-parser');
 const routerUser = require('./routes/users');
 const routerCard = require('./routes/cards');
@@ -10,9 +11,19 @@ const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('./middlewares/cors');
+const ValidationError = require('./errors/validation-err');
 
 const { PORT = 3000 } = process.env;
 const app = express();
+
+const methodValidation = (value) => {
+  const method = validator.isURL(value, { require_protocol: true });
+  if (!method) {
+    return new ValidationError('Введены некорректные данные');
+  }
+  return value;
+};
+
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -39,7 +50,7 @@ app.post('/signup', celebrate({
     email: Joi.string().required().email(),
     password: Joi.string().required().min(5),
     name: Joi.string().min(2).max(30),
-    avatar: Joi.string().regex(/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/),
+    avatar: Joi.string().custom(methodValidation, 'Validation Link'),
     about: Joi.string().min(2).max(30),
   }).unknown(true),
 }), createUser);

@@ -1,5 +1,7 @@
 const { celebrate, Joi } = require('celebrate');
+const validator = require('validator');
 const router = require('express').Router();
+const ValidationError = require('../errors/validation-err');
 const {
   getUsers,
   getUserId,
@@ -7,6 +9,14 @@ const {
   patchAvatar,
   getUser,
 } = require('../controllers/users');
+
+const methodValidation = (value) => {
+  const method = validator.isURL(value, { require_protocol: true });
+  if (!method) {
+    return new ValidationError('Введены некорректные данные');
+  }
+  return value;
+};
 
 router.get('/users', getUsers);
 router.get('/users/me', getUser);
@@ -23,7 +33,7 @@ router.get('/users/:userId', celebrate({
 }), getUserId);
 router.patch('/users/me/avatar', celebrate({
   body: Joi.object().keys({
-    avatar: Joi.string().required().regex(/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/),
+    avatar: Joi.string().required().custom(methodValidation, 'Validation Link'),
   }),
 }), patchAvatar);
 
