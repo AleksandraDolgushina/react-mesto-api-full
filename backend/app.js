@@ -12,6 +12,7 @@ const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('./middlewares/cors');
 const ValidationError = require('./errors/validation-err');
+const NotFoundError = require('./errors/not-found-err');
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -69,6 +70,10 @@ app.use(routerCard);
 
 app.use(errorLogger);
 app.use(errors());
+
+app.use('/', (req, res, next) => {
+  next(new NotFoundError('Ресурс не найден'));
+});
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
