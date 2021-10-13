@@ -6,9 +6,9 @@
   
 Публичный IP-адрес: 62.84.121.187
 
-Домен: http://mesto.dolgushina.nomoredomains.rocks
+Домен: https://mesto.dolgushina.nomoredomains.rocks
 
-Доменное имя API: http://api.mesto.dolgushina.nomoredomains.rocks
+Доменное имя API: https://api.mesto.dolgushina.nomoredomains.rocks
 
 ### Что было сделано:
 Фронтенд:
